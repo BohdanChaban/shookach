@@ -1,0 +1,4 @@
+.idea/
+public/output/*.yml
+Gemfile.lock
+*.gem
