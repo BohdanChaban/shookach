@@ -1,6 +1,6 @@
 require 'shookach'
 
-class Railtie < Rails::Railtie
+class Shookach::Railtie < Rails::Railtie
   rake_tasks do
     load 'tasks/shookach.rake'
   end

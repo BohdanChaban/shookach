@@ -1,6 +1,9 @@
+require './lib/shookach/version'
+
 Gem::Specification.new do |s|
   s.name        = 'shookach'
-  s.version     = '0.0.1'
+  s.version     = Shookach::VERSION
+  s.platform    = Gem::Platform::RUBY
   s.date        = '2018-08-08'
   s.summary     = 'Full-text search'
   s.description = 'A simple gem for full-text search'
