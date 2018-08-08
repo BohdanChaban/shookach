@@ -57,3 +57,11 @@ or
 ```ruby
 rake shookach:index['path/to/input/dir/','path/to/output/dir/']
 ```
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/BohdanChaban/shookach.
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
