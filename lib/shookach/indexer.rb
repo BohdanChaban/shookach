@@ -1,7 +1,7 @@
 class Indexer
-  def initialize(library_path)
-    @path = library_path
-    @output_file = File.open('./public/output/indexes.yml', 'w')
+  def initialize(library_path, output_path)
+    @library_path = library_path
+    create_index_file(output_path)
   end
 
   def call
@@ -12,20 +12,28 @@ class Indexer
 
   private
 
-  def write_dir_indexes
-    puts "indexing directory: #{@path}"
+  def create_index_file(path)
+    Dir.mkdir(path) unless File.exists?(path)
 
-    Dir.foreach(@path) do |filename|
+    @output_file = File.open("#{path}indexes#{Time.now.strftime('%Y%m%d%H%M%S')}.yml", 'w')
+  end
+
+  def write_dir_indexes
+    puts "Indexing directory: #{@library_path}"
+
+    Dir.foreach(@library_path) do |filename|
       next if filename == '.' || filename == '..'
 
       write_file_indexes(filename)
     end
+
+    puts "Output file: #{@output_file.path}"
   end
 
   def write_file_indexes(filename)
-    puts "indexing file: #{filename}"
+    puts "Indexing file: #{filename}"
 
-    @file = File.open("#{@path}/#{filename}", 'r')
+    @file = File.open("#{@library_path}/#{filename}", 'r')
 
     sentences_arr.each_with_index do |sentence, s_index|
       words = sentence.split(' ')
@@ -39,6 +47,6 @@ class Indexer
   end
 
   def sentences_arr
-    @file.read().gsub(/\n|\r/, ' ').split(/\.\s*/)
+    @file.read().gsub(',', ' ').gsub(/\n|\r/, ' ').split(/\.\s*/)
   end
 end

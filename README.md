@@ -2,7 +2,7 @@
 
 Simple gem for basic full-text search 
 
-### Installation
+## Installation
 
 ```sh
 $ gem install shookach
@@ -14,16 +14,46 @@ Or with Bundler in your Gemfile.
 gem 'shookach'
 ```
 
-### Getting started
+## Getting started
 
-Indexing files in default directory
+### Indexing
+
+Index files in `./public/input/` directory and store to `./public/output/`
 
 ```ruby
 Shookach.index
 ```
+or
+```ruby
+rake shookach:index
+```
 
-Indexing files in specific directory
+Index files from specific directory
 
 ```ruby
-Shookach.index('path/to/dir/')
+Shookach.index({library_path: 'path/to/input/dir/'})
+```
+or
+```ruby
+rake shookach:index['path/to/input/dir/']
+```
+
+Store indexes file to specific directory
+
+```ruby
+Shookach.index({output_path: 'path/to/output/dir/'})
+```
+or
+```ruby
+rake shookach:index[,'path/to/output/dir/']
+```
+
+Index files from specific directory and file to specific directory
+
+```ruby
+Shookach.index({library_path: 'path/to/input/dir/', output_path: 'path/to/output/dir/'})
+```
+or
+```ruby
+rake shookach:index['path/to/input/dir/','path/to/output/dir/']
 ```
